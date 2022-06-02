@@ -56,15 +56,12 @@ def return_load_avg():
     load_average = psutil.getloadavg()
     return load_average
 
-# Function to accept a number of dots to write to the console
-# 
 def progress_indicator(dots):
+    #nods_str = str(dots)
     if dots%10 == 0:
         sys.stdout.write('.')
         sys.stdout.flush()
 
-# Function to generate a log stamp specifically for the current
-# system that is unique for each log entry
 def return_log_id():
     host_name = os.environ['COMPUTERNAME']
     log_time = time.strftime("%a, %d %b %Y %H:%M:%S", time.gmtime())
