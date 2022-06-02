@@ -263,7 +263,7 @@ def view_list(col_names,col_fmt,page_length,list_name,log_file,col_w,menu_option
         
 
 def sys_header():
-    display_screen_hdr(' System Xplorer v.9 ',76,'left')
+    display_screen_hdr(' System Xplorer v1.3 ',76,'left')
     log_stamp = return_log_id()    # Host Name and Current Time
     print(" Hostname/Time    : ",log_stamp[9:])
     print(" Boot time        : ",time.ctime(psutil.boot_time()))  # System Boot Time
@@ -604,8 +604,8 @@ def specific_proc_view(pid):
 
 
 def entry_screen():
-    menu_items = ['(P)rocesses ','(N)et Conns ','(D)isk ','(C)puMemNet ','(F)iledoc ','(Q)uit ',
-              '(W)in Svces ',' D(r)ivers  ']
+    menu_items = ['(P)rocesses ','(N)et Conns ','(D)isk ','(C)puMemNet ',' D(r)ivers  ',
+              '(W)in Svces ','(Q)uit ']
 
     sys_header()
     print(' '+'-'*76)
@@ -623,10 +623,7 @@ def entry_screen():
     return answer
 
 def launch_cpu_mem_net():
-    subprocess.Popen(["python","live_perf_psutil_1_0.py"], creationflags=subprocess.CREATE_NEW_CONSOLE)
-
-def launch_file_docu():
-    subprocess.Popen(["python","file_docu_1_0.py"], creationflags=subprocess.CREATE_NEW_CONSOLE)
+    subprocess.Popen(["python","win_perf_watch.py"], creationflags=subprocess.CREATE_NEW_CONSOLE)
 
 def launch_win_drivers():
     col_w = [12,22,10,10,10,48]
@@ -674,13 +671,6 @@ os.system('mode con: cols=130 lines=25')
 rev_on = '\033[7m'
 rev_off = '\033[0m'
 
-# pdta = find_process_exe_cmd()
-# for item in pdta:
-    # x = str(item[1])
-    # print(x.replace("\\\\","\\"))
-
-# z = input('?')
-
 num_procs = initialize_psutil()
 running = "Y"
 
@@ -707,11 +697,6 @@ while running == "Y":
     elif answer =="C" or answer == "c":
         cls()
         launch_cpu_mem_net()
-        cls()
-
-    elif answer =="F" or answer == "f":
-        cls()
-        launch_file_docu()
         cls()
 
     elif answer =="Q" or answer == "q":
